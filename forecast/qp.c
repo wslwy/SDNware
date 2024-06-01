@@ -860,7 +860,6 @@ static inline int _mlx5_post_send(struct ibv_qp *ibqp, struct ibv_send_wr *wr,
 		strncpy(shm->cache[cache_key].gid, gid, 16);
 		shm->cache[cache_key].path_mtu = path_mtu;
 	}
-	printf("gid: %s, mtu: %hhu\n", gid, path_mtu);
 
 	uint16_t mtu = 256;
 	switch (path_mtu) {
