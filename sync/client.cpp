@@ -1,17 +1,18 @@
 #include "common.hpp"
 
-// void debug_amount()
-// {
-//     strcpy(amount[0].gid, "::ffff:172.16.210.35");
-//     amount[0].rx = 1000;
-//     amount[0].tx = 2000;
-// }
 
-// void print_amout()
-// {
-//     cout << "amount[0].tx: " << amount[0].tx << endl;
-//     cout << "amount[0].rx: " << amount[0].rx << endl;
-// }
+void debug_amount(Amount *amount)
+{
+    strcpy(amount[0].gid, "172.16.210.35");
+    amount[0].rx = 1000;
+    amount[0].tx = 2000;
+}
+
+void print_amount(Amount *amount)
+{
+    cout << "amount[0].tx: " << amount[0].tx << endl;
+    cout << "amount[0].rx: " << amount[0].rx << endl;
+}
 
 int main(int argc, char **argv)
 {
@@ -27,6 +28,8 @@ int main(int argc, char **argv)
     {
         cerr << "socket creation failed..." << endl;
         exit(1);
+    } else {
+        cerr << "socket creation success..." << endl;
     }
     
     // assign IP, PORT
@@ -39,10 +42,13 @@ int main(int argc, char **argv)
     {
         cerr << "connection with the server failed..." << endl;
         exit(1);
+    } else {
+        cerr << "connection with the server success..." << endl;
     }
 
     alloc_shared_memory();
-    // debug_amount();
+    debug_amount(shm->amount);
+    print_amount(shm->amount);
     while (sock_write(sock_fd, shm->amount, amount_size) != -1);
     release_shared_memory();
 

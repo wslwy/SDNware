@@ -79,6 +79,8 @@ int main()
     {
         cerr << "cannot open client.txt or server.txt" << endl;
         exit(1);
+    } else {
+        cerr << "open client.txt or server.txt successfully" << endl;
     }
     int client_num = send_rec.size();
     struct sockaddr_in client_addr[client_num];
@@ -89,6 +91,8 @@ int main()
     {
         cerr << "socket creation failed..." << endl;
         exit(1);
+    } else {
+        cerr << "socket creation success..." << endl;
     }
 
     // assign IP, PORT
@@ -114,6 +118,8 @@ int main()
         {
             cerr << "server accept failed..." << endl;
             exit(1);
+        } else {
+            cerr << "server accept success..." << endl;
         }
         fds.push_back(connect_fd);
         fd_to_ip[connect_fd] = inet_ntoa(client_addr[i].sin_addr);
